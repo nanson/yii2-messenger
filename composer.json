@@ -1,0 +1,22 @@
+{
+	"name": "nanson/yii2-messenger",
+	"description": "Private messages extension for yii2",
+	"keywords": ["yii2", "yii", "extension", "module", "messenger", "message", "messages", "private-messages"],
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Denis Chernyavsky",
+			"email": "panopticum87@gmail.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "*",
+		"newerton/yii2-fancybox": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"nanson\\messenger\\": ""
+		}
+	}
+}
