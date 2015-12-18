@@ -1,6 +1,6 @@
 {
 	"name": "nanson/yii2-messenger",
-	"description": "Private messages extension for yii2",
+	"description": "Private messages module for yii2",
 	"keywords": ["yii2", "yii", "extension", "module", "messenger", "message", "messages", "private-messages"],
 	"type": "yii2-extension",
 	"license": "BSD-3-Clause",
