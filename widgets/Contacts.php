@@ -93,7 +93,7 @@ class Contacts extends Widget
 	{
 
 		$options = ArrayHelper::merge($this->options, [
-			$this->id,
+			'id' => $this->id,
 		]);
 
 		return $this->render($this->tpl, [
