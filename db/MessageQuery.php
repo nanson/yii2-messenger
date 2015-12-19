@@ -100,15 +100,10 @@ class MessageQuery extends ActiveQuery
 
 	/**
 	 * Selection latest messages
-	 * @param null $userId
 	 * @return $this
 	 */
-	public function latest($userId=null)
+	public function latest()
 	{
-		if (is_null($userId)) {
-			$userId = Yii::$app->user->id;
-		}
-
 		$class = $this->modelClass;
 
 		$msgIds = $query = $class::find()

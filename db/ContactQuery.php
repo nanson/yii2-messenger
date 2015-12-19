@@ -58,7 +58,7 @@ class ContactQuery extends ActiveQuery
 	public function withLastMessage()
 	{
 
-		$this->addSelect(['last_message_id' => 'max(messages.id)']);
+		$this->addSelect(['last_message_id' => "max({{%$this->msgTableName}}.{{%id}})"]);
 
 		$this->innerJoin("{{%$this->msgTableName}}", [
 			'or',
