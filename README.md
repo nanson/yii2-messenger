@@ -14,6 +14,12 @@ The preferred way to install this extension is through Composer.
 }
 ```
 
+Migration
+
+```
+./yii migrate --migrationPath=@vendor/nanson/yii2-messenger/migrations/
+```
+
 Configure module:
 
 ```

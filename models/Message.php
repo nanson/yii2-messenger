@@ -12,7 +12,7 @@ use nanson\messenger\components\MessengerTrait;
 /**
  * Class Message
  * @property integer $id
- * @property datetime $created_ad
+ * @property datetime $created_at
  * @property integer $author_id
  * @property integer $recipient_id
  * @property boolean $unread

@@ -5,7 +5,7 @@ use yii\db\Schema;
 class m151214_135143_create_massages_table extends \app\modules\main\db\Migration
 {
 
-    public $tableName = 'messages';
+    public $tableName = 'nanson_messenger_messages';
 
     public function safeUp()
     {
