@@ -65,13 +65,15 @@ class Contact extends ActiveRecord
 		return $attributes;
 	}
 
-    /**
-     * @inheritdoc
-     */
-    public function fields()
-    {
-        return $this->userModel->fields();
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function fields()
+	{
+		$fields = $this->userModel->fields();
+		$fields['last_message_id'] = 'last_message_id';
+		return $fields;
+	}
 
     /**
      * @inheritdoc
