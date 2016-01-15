@@ -25,6 +25,10 @@ trait MessengerTrait
 		return Yii::$app->getModule(Messenger::MODULE)->userClass;
 	}
 
+	/**
+	 * Returns User model table name
+	 * @return string
+	 */
 	public static function getUserTableName()
 	{
 		$userClass = self::getUserClassName();

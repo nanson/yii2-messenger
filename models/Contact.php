@@ -12,12 +12,40 @@ use nanson\messenger\components\MessengerTrait;
  * @property-read integer last_message_id
  * @property-read Message lastMessage
  * @property-read ActiveRecord lastMessageAuthor
+ * @property-read ActiveRecord userModel
  * @package nanson\messenger\models
  * @author Chernyavsky Denis <panopticum87@gmail.com>
  */
 class Contact extends ActiveRecord
 {
 	use MessengerTrait;
+
+    /**
+     * @var null|ActiveRecord User model object
+     */
+	protected $_userModel = null;
+
+    /**
+     * Returns User model object
+     * @return null|object
+     * @throws \yii\base\InvalidConfigException
+     */
+	public function getUserModel()
+	{
+		if ( is_null($this->_userModel) or $this->primaryKey != $this->_userModel->primaryKey ) {
+
+            $userClass = self::getUserClassName();
+
+            if (empty($this->primaryKey)) {
+                $this->_userModel = Yii::createObject(['class' => $userClass]);
+            }
+            else {
+                $this->_userModel = $userClass::findOne($this->primaryKey);
+            }
+		}
+
+		return $this->_userModel;
+	}
 
 	/**
 	 * @inheritdoc
@@ -36,6 +64,22 @@ class Contact extends ActiveRecord
 		$attributes[] = 'last_message_id';
 		return $attributes;
 	}
+
+    /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        return $this->userModel->fields();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return $this->userModel->behaviors();
+    }
 
 	/**
 	 * @inheritdoc
