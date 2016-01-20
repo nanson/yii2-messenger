@@ -16,7 +16,10 @@ use nanson\messenger\web\CounterAsset;
 class Counter extends Widget
 {
 
-	public $actionRoute = '/messenger/rest/count';
+	/**
+	 * @var string route to action
+	 */
+	public $route = '/messenger/rest/count';
 
 	/**
 	 * @var int timeout counter update
@@ -54,7 +57,7 @@ class Counter extends Widget
 		$options = ArrayHelper::merge($this->options, [
 			'id' => $this->id,
 			'data' => [
-				'url' => Yii::$app->urlManager->createUrl($this->actionRoute),
+				'url' => Yii::$app->urlManager->createUrl($this->route),
 				'timeout' => $this->timeout,
 			],
 		]);

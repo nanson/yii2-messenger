@@ -38,7 +38,7 @@ class Messages extends Widget
 	public $options = [];
 
 	/**
-	 * @var int contacts per page;
+	 * @var int messages per page;
 	 */
 	public $pageSize = 10;
 
