@@ -34,11 +34,11 @@ Configure module:
 
 Url for contacts list: `/messenger/contacts/`.
 
-![Contacts](/screenshots/contacts.png.jpg?raw=true "Contacts")
+![Contacts](screenshots/contacts.png.jpg?raw=true "Contacts")
 
 Url for messages list: `/messenger/contacts/messages/?id={contact_id}`
 
-![Messages](/screenshots/messages.png.jpg?raw=true "Messages")
+![Messages](screenshots/messages.png.jpg?raw=true "Messages")
 
 ### Contacts widget
 
