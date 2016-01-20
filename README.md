@@ -91,10 +91,12 @@ echo \nanson\messenger\widgets\Messages::widget([
 Display form to message creation.
 
 ```php
+<?php
 echo \nanson\messenger\widgets\AddMessage::widget([
 	'contactId' => $contactId,
 	'pjaxId' => "pjaxMessages",
 ]);
+?>
 ```
 
 | Option        | Type      | Description |
@@ -115,7 +117,9 @@ echo \nanson\messenger\widgets\AddMessage::widget([
 Display count unreaded messages for user.
 
 ```php
+<?php
 echo \nanson\messenger\widgets\Counter::widget();
+?>
 ```
 
 | Option    | Type      | Description |
