@@ -2,7 +2,7 @@
 
 use yii\db\Schema;
 
-class m151214_135143_create_massages_table extends \app\modules\main\db\Migration
+class m151214_135143_create_massages_table extends \yii\db\Migration
 {
 
     public $tableName = 'nanson_messenger_messages';
