@@ -2,10 +2,9 @@
 
 namespace nanson\messenger\db;
 
-use nanson\messenger\components\MessengerTrait;
-use nanson\messenger\Messenger;
 use Yii;
 use yii\db\ActiveQuery;
+use nanson\messenger\components\MessengerTrait;
 
 /**
  * Class MessageQuery
