@@ -12,17 +12,17 @@ use nanson\messenger\models\Message;
  */
 class RestController extends ActiveController
 {
-	/**
-	 * @inheritdoc
-	 */
-	public $modelClass = 'nanson\messenger\models\Message';
+    /**
+     * @inheritdoc
+     */
+    public $modelClass = 'nanson\messenger\models\Message';
 
-	/**
-	 * Returns vount unreaded messages for user
-	 * @return int
-	 */
-	public function actionCount()
-	{
-		return Message::find()->byRecipient()->unread()->count();
-	}
+    /**
+     * Returns vount unreaded messages for user
+     * @return int
+     */
+    public function actionCount()
+    {
+        return Message::find()->byRecipient()->unread()->count();
+    }
 }

@@ -16,53 +16,53 @@ use nanson\messenger\web\CounterAsset;
 class Counter extends Widget
 {
 
-	/**
-	 * @var string route to action
-	 */
-	public $route = '/messenger/rest/count';
+    /**
+     * @var string route to action
+     */
+    public $route = '/messenger/rest/count';
 
-	/**
-	 * @var int timeout counter update
-	 */
-	public $timeout = 30;
+    /**
+     * @var int timeout counter update
+     */
+    public $timeout = 30;
 
-	/**
-	 * @var string counter html tag
-	 */
-	public $tag = 'span';
+    /**
+     * @var string counter html tag
+     */
+    public $tag = 'span';
 
-	/**
-	 * @var array The HTML attributes for the counter tag.
-	 */
-	public $options = [
-		'class' => 'badge',
-	];
+    /**
+     * @var array The HTML attributes for the counter tag.
+     */
+    public $options = [
+        'class' => 'badge',
+    ];
 
-	/**
-	 * @inheritdoc
-	 */
-	public function init()
-	{
-		CounterAsset::register($this->view);
-		$this->view->registerJs("$('#$this->id').messengerCounter()");
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        CounterAsset::register($this->view);
+        $this->view->registerJs("$('#$this->id').messengerCounter()");
 
-		parent::init();
-	}
+        parent::init();
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function run()
-	{
-		$options = ArrayHelper::merge($this->options, [
-			'id' => $this->id,
-			'data' => [
-				'url' => Yii::$app->urlManager->createUrl($this->route),
-				'timeout' => $this->timeout,
-			],
-		]);
+    /**
+     * @inheritdoc
+     */
+    public function run()
+    {
+        $options = ArrayHelper::merge($this->options, [
+            'id' => $this->id,
+            'data' => [
+                'url' => Yii::$app->urlManager->createUrl($this->route),
+                'timeout' => $this->timeout,
+            ],
+        ]);
 
-		return Html::tag($this->tag, '0', $options);
-	}
+        return Html::tag($this->tag, '0', $options);
+    }
 
 }

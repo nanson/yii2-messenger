@@ -12,12 +12,12 @@ echo Html::beginTag('div', $options);
 $form = ActiveForm::begin($formOptions);
 
 echo Html::tag('div', Yii::t('messenger/app', 'Success Message'), [
-	'class' => 'message-success alert alert-success',
-	'style' => 'display:none;',
+    'class' => 'message-success alert alert-success',
+    'style' => 'display:none;',
 ]);
 echo Html::tag('div', Yii::t('messenger/app', 'Error Message'), [
-	'class' => 'message-error alert alert-danger',
-	'style' => 'display:none;',
+    'class' => 'message-error alert alert-danger',
+    'style' => 'display:none;',
 ]);
 
 echo $form->field($model, 'message')->textarea(['name' => 'message']);

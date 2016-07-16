@@ -12,27 +12,27 @@ use yii\web\AssetBundle;
 class CounterAsset extends AssetBundle
 {
 
-	/**
-	 * @inheritdoc
-	 */
-	public $js = [
-		'messenger.counter.js'
-	];
+    /**
+     * @inheritdoc
+     */
+    public $js = [
+        'messenger.counter.js'
+    ];
 
-	/**
-	 * @inheritdoc
-	 */
-	public $depends = [
-		'yii\web\JqueryAsset',
-	];
+    /**
+     * @inheritdoc
+     */
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
 
-	/**
-	 * @inheritdoc
-	 */
-	public function init()
-	{
-		$this->sourcePath = __DIR__ . "/../assets";
-		parent::init();
-	}
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $this->sourcePath = __DIR__ . "/../assets";
+        parent::init();
+    }
 
 }

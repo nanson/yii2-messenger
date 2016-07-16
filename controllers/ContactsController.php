@@ -13,39 +13,39 @@ use yii\filters\AccessControl;
  */
 class ContactsController extends Controller
 {
-	public function behaviors()
-	{
-		return ArrayHelper::merge(parent::behaviors(), [
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'allow' => true,
-						'roles' => ['@'],
-					],
-				],
-			]
-		]);
-	}
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ]
+        ]);
+    }
 
-	/**
-	 * Render contacts list
-	 * @return string
-	 */
-	public function actionIndex()
-	{
-		return $this->render('index');
-	}
+    /**
+     * Render contacts list
+     * @return string
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 
-	/**
-	 * Render messages by Contact
-	 * @return string
-	 */
-	public function actionMessages($id)
-	{
-		return $this->render('view', [
-			'contactId' => $id,
-		]);
-	}
+    /**
+     * Render messages by Contact
+     * @return string
+     */
+    public function actionMessages($id)
+    {
+        return $this->render('view', [
+            'contactId' => $id,
+        ]);
+    }
 
 }

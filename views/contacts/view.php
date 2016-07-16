@@ -7,5 +7,5 @@
 echo \yii\helpers\Html::tag('h1', Yii::t('messenger/app', 'Messages'));
 
 echo \nanson\messenger\widgets\Messages::widget([
-	'contactId' => $contactId,
+    'contactId' => $contactId,
 ]);

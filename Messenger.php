@@ -13,36 +13,36 @@ use yii\base\Module;
 class Messenger extends Module
 {
 
-	const MODULE = 'messenger';
+    const MODULE = 'messenger';
 
-	/**
-	 * @var string User class
-	 */
-	public $userClass;
+    /**
+     * @var string User class
+     */
+    public $userClass;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function init()
-	{
-		if (is_null($this->userClass)) {
-			$this->userClass = Yii::$app->user->identityClass;
-		}
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        if (is_null($this->userClass)) {
+            $this->userClass = Yii::$app->user->identityClass;
+        }
 
-		$this->registerTranslations();
+        $this->registerTranslations();
 
-		return parent::init();
-	}
+        return parent::init();
+    }
 
-	public function registerTranslations()
-	{
-		Yii::$app->i18n->translations['messenger/*'] = [
-			'class' => 'yii\i18n\PhpMessageSource',
-			'sourceLanguage' => 'en-US',
-			'basePath' => '@vendor/nanson/yii2-messenger/messages',
-			'fileMap' => [
-				'messenger/app' => 'app.php',
-			],
+    public function registerTranslations()
+    {
+        Yii::$app->i18n->translations['messenger/*'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@vendor/nanson/yii2-messenger/messages',
+            'fileMap' => [
+                'messenger/app' => 'app.php',
+            ],
         ];
     }
 

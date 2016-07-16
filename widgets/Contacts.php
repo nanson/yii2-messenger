@@ -17,121 +17,121 @@ use nanson\messenger\models\Contact;
 class Contacts extends Widget
 {
 
-	/**
-	 * @var integer user ID
-	 */
-	public $userId;
+    /**
+     * @var integer user ID
+     */
+    public $userId;
 
-	/**
-	 * @var string widget template
-	 */
-	public $tpl = 'contacts';
+    /**
+     * @var string widget template
+     */
+    public $tpl = 'contacts';
 
-	/**
-	 * @var array The HTML attributes for the widget wrapper tag.
-	 */
-	public $options = [];
+    /**
+     * @var array The HTML attributes for the widget wrapper tag.
+     */
+    public $options = [];
 
-	/**
-	 * @var int contacts per page;
-	 */
-	public $pageSize = 10;
+    /**
+     * @var int contacts per page;
+     */
+    public $pageSize = 10;
 
-	/**
-	 * @var string route to messages
-	 */
-	public $viewRoute = '/messenger/contacts/messages';
+    /**
+     * @var string route to messages
+     */
+    public $viewRoute = '/messenger/contacts/messages';
 
-	/**
-	 * @var array default contacts order
-	 */
-	public $defaultOrder = ['last_message_id' => SORT_DESC];
+    /**
+     * @var array default contacts order
+     */
+    public $defaultOrder = ['last_message_id' => SORT_DESC];
 
-	/**
-	 * @var array options for data provider
-	 */
-	public $dataProviderOptions = [];
+    /**
+     * @var array options for data provider
+     */
+    public $dataProviderOptions = [];
 
-	/**
-	 * @var callable function to modify query;
-	 */
-	public $queryModifier;
+    /**
+     * @var callable function to modify query;
+     */
+    public $queryModifier;
 
-	/**
-	 * @var string skin AssetBundle
-	 */
-	public $skinAsset;
+    /**
+     * @var string skin AssetBundle
+     */
+    public $skinAsset;
 
-	/**
-	 * @var ActiveDataProvider contacts data provider
-	 */
-	protected $_dataProvider;
+    /**
+     * @var ActiveDataProvider contacts data provider
+     */
+    protected $_dataProvider;
 
-	/**
-	 * @inheritdoc
-	 */
-	public function init()
-	{
-		parent::init();
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
 
-		$skin = $this->skinAsset;
+        $skin = $this->skinAsset;
 
-		if (is_null($this->userId)) {
-			$this->userId = Yii::$app->user->id;
-		}
+        if (is_null($this->userId)) {
+            $this->userId = Yii::$app->user->id;
+        }
 
-		if ($skin) {
-			$skin::register($this->view);
-		}
+        if ($skin) {
+            $skin::register($this->view);
+        }
 
-	}
+    }
 
-	/**
-	 * @inheritdoc
-	 */
-	public function run()
-	{
+    /**
+     * @inheritdoc
+     */
+    public function run()
+    {
 
-		$options = ArrayHelper::merge($this->options, [
-			'id' => $this->id,
-		]);
+        $options = ArrayHelper::merge($this->options, [
+            'id' => $this->id,
+        ]);
 
-		return $this->render($this->tpl, [
-			'id' => $this->id,
-			'options' => $options,
-			'viewRoute' => $this->viewRoute,
-			'dataProvider' => $this->dataProvider,
-		]);
-	}
+        return $this->render($this->tpl, [
+            'id' => $this->id,
+            'options' => $options,
+            'viewRoute' => $this->viewRoute,
+            'dataProvider' => $this->dataProvider,
+        ]);
+    }
 
-	/**
-	 * Returns data provider for contacts
-	 * @return object|ActiveDataProvider
-	 * @throws \yii\base\InvalidConfigException
-	 */
-	public function getDataProvider()
-	{
-		if (is_null($this->_dataProvider)) {
+    /**
+     * Returns data provider for contacts
+     * @return object|ActiveDataProvider
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getDataProvider()
+    {
+        if (is_null($this->_dataProvider)) {
 
-			$query = Contact::find()->byUser($this->userId)->with(['lastMessage', 'lastMessageAuthor']);
+            $query = Contact::find()->byUser($this->userId)->with(['lastMessage', 'lastMessageAuthor']);
 
-			if (is_callable($this->queryModifier)) {
-				$func = $this->queryModifier;
-				$func($query);
-			}
+            if (is_callable($this->queryModifier)) {
+                $func = $this->queryModifier;
+                $func($query);
+            }
 
-			$this->_dataProvider = Yii::createObject(ArrayHelper::merge([
-				'class' => ActiveDataProvider::className(),
-				'query' => $query,
-			], $this->dataProviderOptions));
+            $this->_dataProvider = Yii::createObject(ArrayHelper::merge([
+                'class' => ActiveDataProvider::className(),
+                'query' => $query,
+            ], $this->dataProviderOptions));
 
-			$this->_dataProvider->sort->defaultOrder = $this->defaultOrder;
+            $this->_dataProvider->sort->defaultOrder = $this->defaultOrder;
 
-			$this->_dataProvider->pagination->pageSize = $this->pageSize;
+            $this->_dataProvider->pagination->pageSize = $this->pageSize;
 
-		}
+        }
 
-		return $this->_dataProvider;
-	}
+        return $this->_dataProvider;
+    }
 
 }

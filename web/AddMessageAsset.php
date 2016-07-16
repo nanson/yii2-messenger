@@ -1,6 +1,7 @@
 <?php
 
 namespace nanson\messenger\web;
+
 use yii\web\AssetBundle;
 
 /**
@@ -11,27 +12,27 @@ use yii\web\AssetBundle;
 class AddMessageAsset extends AssetBundle
 {
 
-	/**
-	 * @inheritdoc
-	 */
-	public $js = [
-		'messenger.message.add.js'
-	];
+    /**
+     * @inheritdoc
+     */
+    public $js = [
+        'messenger.message.add.js'
+    ];
 
-	/**
-	 * @inheritdoc
-	 */
-	public $depends = [
-		'yii\web\JqueryAsset',
-	];
+    /**
+     * @inheritdoc
+     */
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
 
-	/**
-	 * @inheritdoc
-	 */
-	public function init()
-	{
-		$this->sourcePath = __DIR__ . "/../assets";
-		parent::init();
-	}
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $this->sourcePath = __DIR__ . "/../assets";
+        parent::init();
+    }
 
 }

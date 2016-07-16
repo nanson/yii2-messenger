@@ -16,23 +16,23 @@ use nanson\messenger\Messenger;
 trait MessengerTrait
 {
 
-	/**
-	 * Returns User class name
-	 * @return string
-	 */
-	public static function getUserClassName()
-	{
-		return Yii::$app->getModule(Messenger::MODULE)->userClass;
-	}
+    /**
+     * Returns User class name
+     * @return string
+     */
+    public static function getUserClassName()
+    {
+        return Yii::$app->getModule(Messenger::MODULE)->userClass;
+    }
 
-	/**
-	 * Returns User model table name
-	 * @return string
-	 */
-	public static function getUserTableName()
-	{
-		$userClass = self::getUserClassName();
-		return $userClass::tableName();
-	}
+    /**
+     * Returns User model table name
+     * @return string
+     */
+    public static function getUserTableName()
+    {
+        $userClass = self::getUserClassName();
+        return $userClass::tableName();
+    }
 
 }
