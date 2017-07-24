@@ -32,7 +32,8 @@ trait MessengerTrait
     public static function getUserTableName()
     {
         $userClass = self::getUserClassName();
-        return $userClass::tableName();
+        $tableName = trim($userClass::tableName(), "{%}");
+        return "{{%$tableName}}";
     }
 
 }

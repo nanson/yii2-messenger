@@ -2,9 +2,10 @@
 
 namespace nanson\messenger\db;
 
+use nanson\messenger\components\MessengerTrait;
+use nanson\messenger\Messenger;
 use Yii;
 use yii\db\ActiveQuery;
-use nanson\messenger\components\MessengerTrait;
 
 /**
  * Class MessageQuery
@@ -23,7 +24,7 @@ class MessageQuery extends ActiveQuery
      */
     public function unread($state = true)
     {
-        $this->andWhere(["{{%$this->tableName}}.{{%unread}}" => $state]);
+        $this->andWhere(["$this->tableName.[[unread]]" => $state]);
 
         return $this;
     }
@@ -41,8 +42,8 @@ class MessageQuery extends ActiveQuery
 
         $this->andWhere([
             'or',
-            ["{{%$this->tableName}}.{{%author_id}}" => $userId],
-            ["{{%$this->tableName}}.{{%recipient_id}}" => $userId]
+            ["$this->tableName.[[author_id]]" => $userId],
+            ["$this->tableName.[[recipient_id]]" => $userId]
         ]);
 
         return $this;
@@ -77,7 +78,7 @@ class MessageQuery extends ActiveQuery
             $userId = Yii::$app->user->id;
         }
 
-        $this->andWhere(["{{%$this->tableName}}.{{%author_id}}" => $userId]);
+        $this->andWhere(["$this->tableName.[[author_id]]" => $userId]);
 
         return $this;
     }
@@ -93,7 +94,7 @@ class MessageQuery extends ActiveQuery
             $userId = Yii::$app->user->id;
         }
 
-        $this->andWhere(["{{%$this->tableName}}.{{%recipient_id}}" => $userId]);
+        $this->andWhere(["$this->tableName.[[recipient_id]]" => $userId]);
 
         return $this;
     }
@@ -107,11 +108,11 @@ class MessageQuery extends ActiveQuery
         $class = $this->modelClass;
 
         $msgIds = $query = $class::find()
-            ->select(["max({{%$this->tableName}}.{{%id}})"])
+            ->select(["max($this->tableName.[[id]])"])
             ->withContact()
-            ->groupBy("{{%$this->userTableName}}.{{%id}}");
+            ->groupBy("$this->userTableName.[[id]]");
 
-        $this->andWhere(["{{%$this->tableName}}.{{%id}}" => $msgIds]);
+        $this->andWhere(["$this->tableName.[[id]]" => $msgIds]);
 
         return $this;
     }
@@ -122,14 +123,14 @@ class MessageQuery extends ActiveQuery
      */
     public function withContact()
     {
-        $this->leftJoin("{{%$this->userTableName}}", [
+        $this->leftJoin("$this->userTableName", [
             'or',
-            "{{%$this->tableName}}.{{%author_id}} = {{%$this->userTableName}}.{{%id}}",
-            "{{%$this->tableName}}.{{%recipient_id}} = {{%$this->userTableName}}.{{%id}}"
+            "$this->tableName.[[author_id]] = $this->userTableName.[[id]]",
+            "$this->tableName.[[recipient_id]] = $this->userTableName.[[id]]"
         ]);
 
         $this->byUser();
-        $this->andOnCondition(["!=", "{{%$this->userTableName}}.{{%id}}", Yii::$app->user->id]);
+        $this->andOnCondition(["!=", "$this->userTableName.[[id]]", Yii::$app->user->id]);
 
         return $this;
     }

@@ -22,7 +22,7 @@ class ContactQuery extends ActiveQuery
     public function init()
     {
         $expr = new Expression('0');
-        $this->select(["{{%$this->tableName}}.*", 'last_message_id' => $expr]);
+        $this->select(["$this->tableName.*", 'last_message_id' => $expr]);
 
         parent::init();
     }
@@ -42,11 +42,11 @@ class ContactQuery extends ActiveQuery
 
         $this->andOnCondition([
             'or',
-            ["{{%$this->msgTableName}}.{{%author_id}}" => $userId],
-            ["{{%$this->msgTableName}}.{{%recipient_id}}" => $userId],
+            ["$this->msgTableName.[[author_id]]" => $userId],
+            ["$this->msgTableName.[[recipient_id]]" => $userId],
         ]);
 
-        $this->andOnCondition(['!=', "{{%$this->tableName}}.{{%id}}", $userId]);
+        $this->andOnCondition(['!=', "$this->tableName.[[id]]", $userId]);
 
         return $this;
     }
@@ -58,15 +58,15 @@ class ContactQuery extends ActiveQuery
     public function withLastMessage()
     {
 
-        $this->addSelect(['last_message_id' => "max({{%$this->msgTableName}}.{{%id}})"]);
+        $this->addSelect(['last_message_id' => "max($this->msgTableName.[[id]])"]);
 
-        $this->innerJoin("{{%$this->msgTableName}}", [
+        $this->innerJoin("$this->msgTableName", [
             'or',
-            "{{%$this->tableName}}.{{%id}} = {{%$this->msgTableName}}.{{%author_id}}",
-            "{{%$this->tableName}}.{{%id}} = {{%$this->msgTableName}}.{{%recipient_id}}"
+            "$this->tableName.[[id]] = $this->msgTableName.[[author_id]]",
+            "$this->tableName.[[id]] = $this->msgTableName.[[recipient_id]]"
         ]);
 
-        $this->groupBy("{{%$this->tableName}}.{{%id}}");
+        $this->groupBy("$this->tableName.[[id]]");
 
         return $this;
     }

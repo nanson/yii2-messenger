@@ -73,7 +73,7 @@ class Message extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'nanson_messenger_messages';
+        return '{{%nanson_messenger_messages}}';
     }
 
     /**
