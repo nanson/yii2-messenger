@@ -1,18 +1,18 @@
-(function($){
+(function ($) {
 
-    $.fn.messengerCounter = function() {
+    $.fn.messengerCounter = function () {
 
-        return this.each(function() {
+        return this.each(function () {
 
             var counter = $(this),
                 url = counter.data('url'),
-                timeout = counter.data('timeout')*1000,
+                timeout = counter.data('timeout') * 1000,
 
-                success = function(data){
+                success = function (data) {
                     counter.html(data);
                 },
 
-                update = function(){
+                update = function () {
                     $.ajax({
                         url: url,
                         type: 'get',
